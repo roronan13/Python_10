@@ -36,3 +36,33 @@ def mage_stats(mages: list[dict]) -> dict:
              'avg_power': average_power}
 
     return stats
+
+
+if __name__ == "__main__":
+
+    artifacts = [{'name': 'Ice Wand', 'power': 86, 'type': 'relic'},
+                 {'name': 'Crystal Orb', 'power': 101, 'type': 'relic'},
+                 {'name': 'Light Prism', 'power': 62, 'type': 'weapon'},
+                 {'name': 'Ice Wand', 'power': 118, 'type': 'relic'}]
+    mages = [{'name': 'Kai', 'power': 50, 'element': 'wind'},
+             {'name': 'Riley', 'power': 59, 'element': 'earth'},
+             {'name': 'Casey', 'power': 91, 'element': 'ice'},
+             {'name': 'Morgan', 'power': 100, 'element': 'wind'},
+             {'name': 'Zara', 'power': 59, 'element': 'shadow'}]
+    spells = ['meteor', 'fireball', 'earthquake', 'tsunami']
+
+    print("   artifact_sorter : \n")
+    print(f"{artifacts}")
+    print(f"{artifact_sorter(artifacts)}")
+
+    print("\n   power_filter : \n")
+    print(f"{mages}")
+    print(f"{power_filter(mages, 60)}")
+
+    print("\n   spell_transformer : \n")
+    print(f"{spells}")
+    print(f"{spell_transformer(spells)}")
+
+    print("\n   mage_stats : \n")
+    print(f"{mages}")
+    print(f"{mage_stats(mages)}")
