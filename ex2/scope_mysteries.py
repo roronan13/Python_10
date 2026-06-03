@@ -12,7 +12,11 @@ def mage_counter() -> Callable:
     return counter
 
 
-# def spell_accumulator(initial_power: int) -> Callable:
+def spell_accumulator(initial_power: int) -> Callable:
+
+    def accumulator()
+        
+    return a
 
 
 # def enchantment_factory(enchantment_type: str) -> Callable:
@@ -34,4 +38,3 @@ if __name__ == "__main__":
     print(f"counter_a : {counter_a()}")
     print(f"counter_b : {counter_b()}")
 
-    
