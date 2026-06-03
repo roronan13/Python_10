@@ -35,12 +35,17 @@ def memory_vault() -> dict[str, Callable]:
     stored_values: dict = {}
 
     def store(key: str, value) -> None:
+        stored_values[key] = value
 
-    def recall(key: str):
+    def recall(key: str) -> str:
+        if key in stored_values:
+            return (f"{stored_values[key]}")
+        else:
+            return ("Memory not found.")
 
     return {
-        "store_function": store,
-        "recall_function": recall
+        "store": store,
+        "recall": recall
     }
 
 
@@ -85,3 +90,12 @@ if __name__ == "__main__":
 
     print("\n     Memory vault     ")
 
+    vault: dict[str, Callable] = memory_vault()
+
+    print("Store 'best_number' = 13")
+    vault['store']("best_number", 13)
+
+    print("Recall 'best_number' : ", end="")
+    print(f"{vault['recall']('best_number')}")
+    print("Recall 'better_number' : ", end="")
+    print(f"{vault['recall']('better_number')}")
