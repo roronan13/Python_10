@@ -23,8 +23,15 @@ def mage_counter() -> Callable:
 
 if __name__ == "__main__":
 
-    counter: Callable = mage_counter()
-    print(f"{counter()}")
-    print(f"{counter()}")
-    print(f"{counter()}")
-    print(f"{counter()}")
+    print("     Mage counter   ")
+
+    counter_a: Callable = mage_counter()
+    counter_b: Callable = mage_counter()
+
+    print(f"counter_a : {counter_a()}")
+    print(f"counter_a : {counter_a()}")
+    print(f"counter_b : {counter_b()}")
+    print(f"counter_a : {counter_a()}")
+    print(f"counter_b : {counter_b()}")
+
+    
