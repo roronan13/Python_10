@@ -1,4 +1,5 @@
 from collections.abc import Callable
+import random
 
 
 def mage_counter() -> Callable:
@@ -14,18 +15,41 @@ def mage_counter() -> Callable:
 
 def spell_accumulator(initial_power: int) -> Callable:
 
-    def accumulator()
-        
-    return a
+    def accumulator(amount_to_add: int) -> int:
+        nonlocal initial_power
+        initial_power += amount_to_add
+        return initial_power
+
+    return accumulator
 
 
-# def enchantment_factory(enchantment_type: str) -> Callable:
+def enchantment_factory(enchantment_type: str) -> Callable:
+
+    def enchantment(item_name: str) -> str:
+        return (f"{enchantment_type} {item_name}")
+
+    return enchantment
 
 
-# def memory_vault() -> dict[str, Callable]:
+def memory_vault() -> dict[str, Callable]:
+    stored_values: dict = {}
+
+    def store(key: str, value) -> None:
+
+    def recall(key: str):
+
+    return {
+        "store_function": store,
+        "recall_function": recall
+    }
 
 
 if __name__ == "__main__":
+
+    initial_powers = [59, 63, 23]
+    power_additions = [19, 9, 20, 6, 11]
+    enchantment_types = ['Shocking', 'Flaming', 'Earthen']
+    items_to_enchant = ['Sword', 'Ring', 'Staff', 'Wand']
 
     print("     Mage counter   ")
 
@@ -37,4 +61,27 @@ if __name__ == "__main__":
     print(f"counter_b : {counter_b()}")
     print(f"counter_a : {counter_a()}")
     print(f"counter_b : {counter_b()}")
+
+    print("\n     Spell accumulator   ")
+
+    accumulator: Callable = spell_accumulator(10)
+    print(f"{accumulator(5)}")
+    print(f"{accumulator(5)}")
+    print(f"{accumulator(5)}")
+    print(f"{accumulator(5)}")
+
+    print("\n     Enchantment factory   ")
+
+    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
+    print(f"{enchantment(random.choice(items_to_enchant))}")
+    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
+    print(f"{enchantment(random.choice(items_to_enchant))}")
+    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
+    print(f"{enchantment(random.choice(items_to_enchant))}")
+    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
+    print(f"{enchantment(random.choice(items_to_enchant))}")
+    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
+    print(f"{enchantment(random.choice(items_to_enchant))}")
+
+    print("\n     Memory vault     ")
 
