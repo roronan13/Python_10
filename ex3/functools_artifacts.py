@@ -10,6 +10,10 @@ class OperationError(Exception):
         super().__init__(error_msg)
 
 
+def base_enchantment(power: int, element: str, target: str) -> str:
+    return (f"{power} of {element} is thrown at {target} !")
+
+
 def spell_reducer(spells: list[int], operation: str) -> int:
     if operation not in ['add', 'multiply', 'max', 'min']:
         raise OperationError(f"Unknown operation ({operation}).")
@@ -30,7 +34,17 @@ def spell_reducer(spells: list[int], operation: str) -> int:
 
 
 def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
-    
+
+    ice = partial(base_enchantment, 50, "ice")
+    fire = partial(base_enchantment, 50, "fire")
+    mud = partial(base_enchantment, 50, "mud")
+
+    return {
+        "ice": ice,
+        "fire": fire,
+        "mud": mud
+    }
+
 
 # def memoized_fibonacci(n: int) -> int:
 
@@ -51,3 +65,10 @@ if __name__ == "__main__":
         print(spell_reducer(spell_powers, random.choice(operations)))
     except OperationError as e:
         print(f"{e}")
+
+    print("\n     Partial enchanter   \n")
+
+    enchanter = partial_enchanter(base_enchantment)
+    print(f"{enchanter['ice']('me')}")
+    print(f"{enchanter['fire']('you')}")
+    print(f"{enchanter['mud']('them')}")
