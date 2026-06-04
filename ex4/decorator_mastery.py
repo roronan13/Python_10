@@ -14,15 +14,28 @@ def spell_timer(func: Callable) -> Callable:
         result = func(*args, **kwargs)
         ending_time = time.time()
 
-        print(f"Spell completed in {round(ending_time - starting_time, 3)} seconds.")
+        print(f"Spell completed in {ending_time - starting_time:.3f} seconds.")
 
-        return result 
+        return result
 
     return wrapper
 
 
+def power_validator(min_power: int) -> Callable:
 
-# def power_validator(min_power: int) -> Callable:
+    def decorator(func: Callable) -> Callable:
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+
+            given_power = args[-1]
+            if given_power >= min_power:
+                return func(*args, **kwargs)
+            return ("Insufficient power for this spell.")
+
+        return wrapper
+
+    return decorator
 
 
 # def retry_spell(max_attempts: int) -> Callable:
@@ -38,7 +51,7 @@ def spell_timer(func: Callable) -> Callable:
 
 @spell_timer
 def spell_throwing(spell: str) -> str:
-    time.sleep(0.1)
+    time.sleep(0.2)
     return (f"Spell {spell} has been thrown !")
 
 
@@ -52,3 +65,7 @@ if __name__ == "__main__":
     print("     Spell timer   \n")
 
     print(f"{spell_throwing(random.choice(spell_names))}")
+
+    print("\n     Power validator   \n")
+
+    
