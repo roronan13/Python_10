@@ -54,10 +54,24 @@ def memoized_fibonacci(n: int) -> int:
     return (memoized_fibonacci(n - 2) + memoized_fibonacci(n - 1))
 
 
-@singledispatch
 def spell_dispatcher() -> Callable[[Any], str]:
-    right_spell: Callable[[Any], str]
+    @singledispatch
+    def right_spell(data: Any) -> str:
+        return ("Type is not handled.")
 
+    @right_spell.register
+    def handle_int(data: int) -> str:
+        return (f"Damage spell is {data} damage.")
+
+    @right_spell.register
+    def handle_str(data: str) -> str:
+        return (f"Enchantment is {data}.")
+
+    @right_spell.register
+    def handle_list(data: list) -> str:
+        return (f"Multi-cast has {len(data)} spells.")
+
+    return right_spell
 
 
 if __name__ == "__main__":
@@ -90,3 +104,8 @@ if __name__ == "__main__":
 
     print("\n     Spell dispatcher   \n")
 
+    right_spell = spell_dispatcher()
+    print(right_spell(10))
+    print(right_spell("Flipendo"))
+    print(right_spell(["Attack", "Heal", "Defend"]))
+    print(right_spell(42.13))
