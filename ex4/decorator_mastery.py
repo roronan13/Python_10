@@ -50,9 +50,11 @@ def retry_spell(max_attempts: int) -> Callable:
                     return func(*args, **kwargs)
                 except Exception as e:
                     if attempt < max_attempts:
-                        print(f"Spell failed ({e}) , retrying ... (attempt {attempt}/{max_attempts}).")
+                        print(f"Spell failed ({e}) , retrying ... \
+(attempt {attempt}/{max_attempts}).")
                     else:
-                        return (f"Spell casting failed ({e}) after {max_attempts} attempts.")
+                        return (f"Spell casting failed ({e}) \
+after {max_attempts} attempts.")
 
         return wrapper
 
@@ -81,7 +83,8 @@ if __name__ == "__main__":
 
     test_powers = [14, 20, 19, 25]
     spell_names = ['fireball', 'blizzard', 'freeze', 'shield']
-    mage_names = ['Ash', 'Nova', 'Phoenix', 'Riley', 'Jordan', 'Sage', 'Jo', 'A', 'Alex123', 'Test@Name']
+    mage_names = ['Ash', 'Nova', 'Phoenix', 'Riley', 'Jordan',
+                  'Sage', 'Jo', 'A', 'Alex123', 'Test@Name']
 
     print("     Spell timer   \n")
 

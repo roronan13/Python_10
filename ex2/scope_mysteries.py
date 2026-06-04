@@ -77,16 +77,30 @@ if __name__ == "__main__":
 
     print("\n     Enchantment factory   ")
 
-    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
-    print(f"{enchantment(random.choice(items_to_enchant))}")
-    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
-    print(f"{enchantment(random.choice(items_to_enchant))}")
-    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
-    print(f"{enchantment(random.choice(items_to_enchant))}")
-    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
-    print(f"{enchantment(random.choice(items_to_enchant))}")
-    enchantment: Callable = enchantment_factory(random.choice(enchantment_types))
-    print(f"{enchantment(random.choice(items_to_enchant))}")
+    enchantment_1: Callable = (
+        enchantment_factory(random.choice(enchantment_types))
+    )
+    print(f"{enchantment_1(random.choice(items_to_enchant))}")
+
+    enchantment_2: Callable = (
+        enchantment_factory(random.choice(enchantment_types))
+    )
+    print(f"{enchantment_2(random.choice(items_to_enchant))}")
+
+    enchantment_3: Callable = (
+        enchantment_factory(random.choice(enchantment_types))
+    )
+    print(f"{enchantment_3(random.choice(items_to_enchant))}")
+
+    enchantment_4: Callable = (
+        enchantment_factory(random.choice(enchantment_types))
+    )
+    print(f"{enchantment_4(random.choice(items_to_enchant))}")
+
+    enchantment_5: Callable = (
+        enchantment_factory(random.choice(enchantment_types))
+    )
+    print(f"{enchantment_5(random.choice(items_to_enchant))}")
 
     print("\n     Memory vault     ")
 
