@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from typing import Any
 import random
-from functools import reduce, partial
+from functools import reduce, partial, lru_cache
 from operator import add, mul
 
 
@@ -46,11 +46,16 @@ def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
     }
 
 
-# def memoized_fibonacci(n: int) -> int:
+@lru_cache(maxsize=None)
+def memoized_fibonacci(n: int) -> int:
+    if n < 2:
+        return n
+
+    return (memoized_fibonacci(n - 2) + memoized_fibonacci(n - 1))
 
 
-# def spell_dispatcher() -> Callable[[Any], str]:
-
+def spell_dispatcher() -> Callable[[Any], str]:
+    
 
 
 if __name__ == "__main__":
@@ -72,3 +77,14 @@ if __name__ == "__main__":
     print(f"{enchanter['ice']('me')}")
     print(f"{enchanter['fire']('you')}")
     print(f"{enchanter['mud']('them')}")
+
+    print("\n     Memoized fibonacci   \n")
+
+    print(f"0 --> {memoized_fibonacci(0)}")
+    print(f"1 --> {memoized_fibonacci(1)}")
+    print(f"10 --> {memoized_fibonacci(10)}")
+    print(f"15 --> {memoized_fibonacci(15)}")
+    # print(memoized_fibonacci.cache_info())
+
+    print("\n     Spell dispatcher   \n")
+
