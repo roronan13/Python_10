@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from typing import Any
 import random
-from functools import reduce, partial, lru_cache
+from functools import reduce, partial, lru_cache, singledispatch
 from operator import add, mul
 
 
@@ -54,8 +54,10 @@ def memoized_fibonacci(n: int) -> int:
     return (memoized_fibonacci(n - 2) + memoized_fibonacci(n - 1))
 
 
+@singledispatch
 def spell_dispatcher() -> Callable[[Any], str]:
-    
+    right_spell: Callable[[Any], str]
+
 
 
 if __name__ == "__main__":
