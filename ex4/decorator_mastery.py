@@ -81,13 +81,36 @@ if __name__ == "__main__":
 
     test_powers = [14, 20, 19, 25]
     spell_names = ['fireball', 'blizzard', 'freeze', 'shield']
-    mage_names = ['Ash', 'Nova', 'Phoenix', 'Riley', 'Jordan', 'Sage']
-    invalid_names = ['Jo', 'A', 'Alex123', 'Test@Name']
+    mage_names = ['Ash', 'Nova', 'Phoenix', 'Riley', 'Jordan', 'Sage', 'Jo', 'A', 'Alex123', 'Test@Name']
 
     print("     Spell timer   \n")
 
     print(f"{spell_throwing(random.choice(spell_names))}")
 
     print("\n     Retrying spell   \n")
+    counter = {"n": 0}
 
-    
+    @retry_spell(3)
+    def fail_before_success():
+        counter["n"] += 1
+        if counter["n"] < 4:
+            raise Exception("expected fail")
+        return ("Spell succeeded !")
+
+    print(f"{fail_before_success()}")
+
+    @retry_spell(3)
+    def success():
+        return ("Spell succeeded !")
+
+    print(f"{success()}")
+
+    print("\n     MageGuild   \n")
+
+    mage_name: str = random.choice(mage_names)
+    print(f"For name {mage_name} : {MageGuild.validate_mage_name(mage_name)}")
+
+    guild = MageGuild()
+
+    print(guild.cast_spell(random.choice(spell_names), 15))
+    print(guild.cast_spell(random.choice(spell_names), 5))
