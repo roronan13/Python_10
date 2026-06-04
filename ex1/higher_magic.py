@@ -43,8 +43,8 @@ def spell_sequence(spells: list[Callable]) -> Callable:
 
 if __name__ == "__main__":
 
-    test_values = [21, 8, 7]
-    test_targets = ['Dragon', 'Goblin', 'Wizard', 'Knight']
+    val = [21, 8, 7]
+    targ = ['Dragon', 'Goblin', 'Wizard', 'Knight']
 
     def heal(target: str, power: int) -> str:
         return (f"Heal restores {target} for {power} HP.")
@@ -61,18 +61,14 @@ if __name__ == "__main__":
         return False
 
     combiner_function: Callable = spell_combiner(heal, attack)
-    print(f"{combiner_function(random.choice(test_targets),
-                               random.choice(test_values))}")
+    print(f"{combiner_function(random.choice(targ), random.choice(val))}")
 
     amplifier_function: Callable = power_amplifier(explore, 4)
-    print(f"{amplifier_function(random.choice(test_targets),
-                                random.choice(test_values))}")
+    print(f"{amplifier_function(random.choice(targ), random.choice(val))}")
 
     conditional_function: Callable = conditional_caster(condition_function,
                                                         attack)
-    print(f"{conditional_function(random.choice(test_targets),
-                                  random.choice(test_values))}")
+    print(f"{conditional_function(random.choice(targ), random.choice(val))}")
 
     sequence_function: Callable = spell_sequence([heal, attack, explore])
-    print(f"{sequence_function(random.choice(test_targets),
-                               random.choice(test_values))}")
+    print(f"{sequence_function(random.choice(targ), random.choice(val))}")
